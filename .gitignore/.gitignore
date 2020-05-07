@@ -1,0 +1,44 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+nohup.out
+
+### ignore the swp file of Makefile ###
+.Makefile.swp
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Docker & CI ###
+data/
+logs/
+release.properties
+pom.xml.releaseBackup
+ansible
+
+#### mac
+.DS_Store
+
+### VScode
+.vscode
+
+###
+out/
