@@ -1,0 +1,4 @@
+spring:
+  application:
+    # 本服务注册到注册到服务器的名称, 这个名称就是后面调用服务时的服务标识符
+    name: my-spring-boot
