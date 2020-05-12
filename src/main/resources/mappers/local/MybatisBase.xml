@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucien.myspringboot.dao.BaseDao">
+
+    <sql id="selectColumns">
+        col1, col2, col3
+    </sql>
+    <sql id="tableName">
+        table_name
+    </sql>
+
+    <select id="getById" parameterType="java.lang.String" resultType="com.lucien.myspringboot.dao.entity.BaseDO">
+        SELECT
+        <include refid="selectColumns"/>
+        FROM
+        <include refid="tableName"/>
+        WHERE
+        col1 = #{col1}
+    </select>
+
+    <insert id="replace" parameterType="com.lucien.myspringboot.dao.entity.BaseDO"
+            useGeneratedKeys="true">
+        insert into
+        <include refid="tableName"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            col1,
+            col2,
+            col3
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{col1},
+            #{col2},
+            #{col3}
+        </trim>
+        ON DUPLICATE KEY update
+        col1 = IF(enable = 0, #{col1}, col1),
+        col2 = IF(enable = 0, #{col2}, col2),
+        col3 = IF(enable = 0, #{col3}, col3)
+    </insert>
+</mapper>
