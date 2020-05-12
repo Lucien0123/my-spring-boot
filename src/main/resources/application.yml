@@ -1,2 +1,22 @@
 server:
   port: 8080
+
+mysql:
+  maxActive: 20
+  minIdle: 1
+  maxWait: 3000
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 300000
+  testWhileIdle: true
+  host: 127.0.0.1
+  port: 3306
+  address: ${mysql.host}:${mysql.port}
+  username: root
+  password: 1995
+
+  local:
+    host: ${mysql.host}
+    port: ${mysql.port}
+    username: ${mysql.username}
+    password: ${mysql.password}
+    database: db_my_test
