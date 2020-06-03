@@ -73,7 +73,7 @@ public class DBConfiguration extends AbstractDBConfiguration {
         factory.setDataSource(this.dataSource());
         factory.setVfs(SpringBootVFS.class);
         PathMatchingResourcePatternResolver patternResolver = new PathMatchingResourcePatternResolver();
-        factory.setMapperLocations(patternResolver.getResources("classpath:mappers/local/*.xml"));
+        factory.setMapperLocations(patternResolver.getResources("classpath*:mappers/local/*.xml"));
         org.apache.ibatis.session.Configuration config = new org.apache.ibatis.session.Configuration();
         config.setMapUnderscoreToCamelCase(true);
         factory.setConfiguration(config);

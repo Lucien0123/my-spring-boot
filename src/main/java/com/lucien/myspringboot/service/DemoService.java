@@ -7,7 +7,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author huoershuai
@@ -64,5 +65,25 @@ public class DemoService {
             throw new IllegalStateException("addDelayJob error, delayEvent:{" + delayEvent + "}, e:{" + e.getMessage() + "}");
         }
 
+    }
+
+    public static void main(String[] args) {
+        List<Integer> rawList = new ArrayList<Integer>(){{
+            add(1);add(2);
+            add(3);add(4);
+            add(9);add(8);
+            add(7);add(6);
+        }};
+
+        for (int i = 0; i < rawList.size(); i++) {
+            for (int j = i + 1; j < rawList.size(); j++) {
+                if (rawList.get(i) < rawList.get(j)) {
+                    int tmp = rawList.get(i);
+                    rawList.set(i, rawList.get(j));
+                    rawList.set(j, tmp);
+                }
+            }
+        }
+        System.out.println(rawList);
     }
 }
