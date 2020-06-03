@@ -112,6 +112,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.xolstice.maven.plugins</groupId>
+				<artifactId>protobuf-maven-plugin</artifactId>
+				<configuration>
+					<protoSourceRoot>src/main/proto</protoSourceRoot>
+					<includes>
+						<include>**/*.proto</include>
+					</includes>
+				</configuration>
+			</plugin>
+
 			<!--Docker Maven插件依赖-->
 			<plugin>
 				<groupId>com.spotify</groupId>

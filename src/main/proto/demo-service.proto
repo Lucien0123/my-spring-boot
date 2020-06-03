@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "common.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_package = "com.lucien.myspringboot.proto.service";
+option java_multiple_files = true;
+
+package demo;
+
+// The bike location query service definition.
+service DemoService {
+    rpc saySomeThings (SayRequest) returns (SayResponse);
+}
+
+message SayRequest {
+    string param1 = 1; // 参数1
+}
+
+message SayResponse {
+    string param1 = 1; // 响应字符串
+}
