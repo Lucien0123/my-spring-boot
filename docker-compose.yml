@@ -7,8 +7,3 @@ services:
       - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-debug}
     ports:
       - "9999:9090"
-    networks:
-      - mynet
-networks:
-  mynet:
-    external: true

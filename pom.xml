@@ -131,11 +131,10 @@
 				<version>${docker-maven-plugin.version}</version>
 				<configuration>
 					<imageName>${project.name}:${project.version}</imageName>
-					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+					<dockerDirectory>${project.basedir}</dockerDirectory>
 					<skipDockerBuild>false</skipDockerBuild>
 					<resources>
 						<resource>
-							<targetPath>/app</targetPath>
 							<directory>${project.build.directory}</directory>
 							<include>${project.build.finalName}.jar</include>
 						</resource>
