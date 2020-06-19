@@ -2,3 +2,22 @@ spring:
   application:
     # 本服务注册到注册到服务器的名称, 这个名称就是后面调用服务时的服务标识符
     name: my-spring-boot
+  cloud:
+    config:
+      enabled: true
+      # uri: http://127.0.0.1:8888/
+      label: master
+      failFast: true
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      config:
+        format: FILES
+        watch:
+          delay: 60000
+      discovery:
+        # healthCheckPath: /health
+        # healthCheckInterval: 15s
+        instance-id: my-spring-boot
+        enabled: true
+      enabled: true
