@@ -1,5 +1,7 @@
 # MySpringBoot
 
+
+# 在应用根路径下执行
 # build 镜像
 mvn clean package docker:build
 
