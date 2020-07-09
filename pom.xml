@@ -15,9 +15,14 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
+		<os.detected.name>osx</os.detected.name>
+		<os.detected.arch>x86_64</os.detected.arch>
+		<os.detected.classifier>osx-x86_64</os.detected.classifier>
 		<java.version>1.8</java.version>
+		<spring-cloud.version>2.0.1.RELEASE</spring-cloud.version>
 		<mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
 		<docker-maven-plugin.version>1.1.1</docker-maven-plugin.version>
+		<grpc.version>1.30.2</grpc.version>
 	</properties>
 
 	<dependencies>
@@ -67,17 +72,17 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-openfeign-core</artifactId>
-            <version>2.0.1.RELEASE</version>
+            <version>${spring-cloud.version}</version>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-			<version>2.0.1.RELEASE</version>
+			<version>${spring-cloud.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-commons</artifactId>
-			<version>2.0.1.RELEASE</version>
+			<version>${spring-cloud.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -108,9 +113,37 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.71</version>
         </dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-netty-shaded</artifactId>
+			<version>${grpc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-protobuf</artifactId>
+			<version>${grpc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-stub</artifactId>
+			<version>${grpc.version}</version>
+		</dependency>
+		<dependency> <!-- necessary for Java 9+ -->
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>annotations-api</artifactId>
+			<version>6.0.53</version>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 
 	<build>
+		<extensions>
+			<extension>
+				<groupId>kr.motd.maven</groupId>
+				<artifactId>os-maven-plugin</artifactId>
+				<version>1.6.2</version>
+			</extension>
+		</extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -120,11 +153,35 @@
 			<plugin>
 				<groupId>org.xolstice.maven.plugins</groupId>
 				<artifactId>protobuf-maven-plugin</artifactId>
+				<version>0.6.1</version>
+				<!--添加.proto文件的编译工具-->
 				<configuration>
+					<pluginId>grpc-java</pluginId>
+					<!--protoc工具通过.proto文件生成对应的java对应的类-->
+					<protocArtifact>com.google.protobuf:protoc:3.12.0:exe:${os.detected.classifier}</protocArtifact>
+					<!--protoc-gen-grpc-java工具通过.proto文件生成grpc工具类-->
+					<pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
+					<!--这是生成grpc工具类存放的文件夹的名字-->
+					<!--要编译的.proto文件的路径-->
 					<protoSourceRoot>src/main/proto</protoSourceRoot>
 					<includes>
 						<include>**/*.proto</include>
 					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>compile-custom</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<classifier>${os.detected.classifier}</classifier>
 				</configuration>
 			</plugin>
 
