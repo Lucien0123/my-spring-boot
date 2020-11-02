@@ -29,6 +29,13 @@ public class TestController {
         return param;
     }
 
+    /**
+     *
+     * @param username
+     * @param age
+     * @param delayTime
+     * @return
+     */
     @RequestMapping(value = "/test_delay", method = {RequestMethod.GET, RequestMethod.POST})
     public String test_delay(@RequestParam(name = "username") String username,
                              @RequestParam(name = "age") int age,

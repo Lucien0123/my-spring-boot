@@ -2,14 +2,12 @@ package com.lucien.myspringboot.service;
 
 import com.lucien.myspringboot.model.DelayEvent;
 import com.lucien.myspringboot.model.User;
-import com.lucien.myspringboot.proto.service.DemoServiceGrpc;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Author huoershuai
