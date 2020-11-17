@@ -61,7 +61,7 @@ public class GsonTestModel {
         subGsonModelList.add(subModel);
         subGsonModelList.add(subModel2);
 
-        
+
         String listString = GsonUtils.gsonToJSON(subGsonModelList);
         System.out.println(listString);
         List<SubGsonModel> ccc = GsonUtils.gsonFromJSONArray(listString, SubGsonModel.class);

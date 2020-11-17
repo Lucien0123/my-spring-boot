@@ -1,5 +1,13 @@
 # MySpringBoot
 
+# IDEA创建项目后绑定GITHUB
+cd my-spring-boot
+git init
+git remote add origin git@github.com:Lucien0123/my-spring-boot.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
 
 # 在应用根路径下执行
 # build 镜像
