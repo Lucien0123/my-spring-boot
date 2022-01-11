@@ -1,5 +1,6 @@
 package com.lucien.myspringboot.service;
 
+import com.lucien.myspringboot.dao.BaseDao;
 import com.lucien.myspringboot.model.DelayEvent;
 import com.lucien.myspringboot.model.User;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,9 @@ public class DemoService {
 
     @Autowired
     private RedisDelayQueueService<User> redisDelayQueueService;
+
+    @Autowired
+    private BaseDao baseDao;
 
     /**
      * 执行延迟任务内容
